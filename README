@@ -1,0 +1,41 @@
+WINBACK is a backup tool for Windows systems that simply copies files.
+
+Coming from a unix background, this may not seem significant. It however
+copies *any* file, regardless of permission. It will copy the file even
+if it is open by other process. It will do so even on Windows 2000, and
+without kernel patches or hooks, without a replacement filesystem driver,
+and without even (technically) requiring Administrator access.
+
+WINBACK can copy to another file, or it can copy to an FTP or SSH/SFTP site.
+It can backup your registry, your IIS metabase, and your event log. It
+copies them up as files to make cherry-picking simple, and to make it
+*easy* to recover individual files.
+
+It encodes your NTFS filesystem security into a file called Security.VBS
+that can be used to partially or fully recover files.
+
+WINBACK is also Free Software, and can be redistributed under the terms of
+the GNU General Public License.
+
+To use it, run:
+	winback.exe /all c:\ ssh://username:password@target/path/to/
+
+You can also run winback.exe/help to get more information on how to back-up
+individual things. If you want backups to be periodic, create a scheduled
+task.
+
+WINBACK works using the Windows Backup API, and decoding the streams directly.
+If it fails to get access to a stream, it uses the Linux NTFS driver to
+read the raw disk blocks directly to get at the version of the file on the
+disk. If the target is an ftp:// url, it uses the WININET FTP system so it
+will support your MSIE proxy settings. If the target is an ssh:// url, it will
+use the included version of PuTTY to transfer the file. PuTTY is, however, very
+slow, so this is not recommended.
+
+WINBACK does *not* use the VSS, and so it can be used even in catastrophic
+situations- perhaps from a recovery console.
+
+LINBACK is a backup tool that works like WINBACK's FTP mode.
+
+rotatedir.sh is a simple tool to rotate a couple backups using hard-links
+to minimize disk space usage.
