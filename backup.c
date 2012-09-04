@@ -576,7 +576,7 @@ int main(int argc, char *argv[])
 		}
 	}
 	if (l_flag) {
-		printf("WINBACK to simply copy files\n"
+		printf("WINBACK to simply copy files by Geo Carncross\n"
 "Copyright (C) 2008 Internet Connection, Inc.\n");
 
 		if (v_flag) {
