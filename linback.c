@@ -15,6 +15,10 @@
 
 #include "urlparse.h"
 
+#ifndef PATH_MAX
+#define PATH_MAX 65536
+#endif
+
 static char *checkpoint_tmp;
 static char *checkpoint_file;
 static int checkpoint_fd;
